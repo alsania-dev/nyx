@@ -5,7 +5,7 @@
 </div>
 
 <p align="center">
-Brings MCP to ChatGPT, Perplexity, Grok, Gemini, Google AI Studio, OpenRouter, Kimi, Github Copilot, Mistral and more...
+Where automation meets tranquility
 </p>
 
 <p align="center">
@@ -18,21 +18,14 @@ Brings MCP to ChatGPT, Perplexity, Grok, Gemini, Google AI Studio, OpenRouter, K
 </div>
 
 <div align="center">
-   
+
    ![Latest Release](https://img.shields.io/github/v/release/alsania-dev/Nyx?style=flat-square&label=Latest%20Release&color=brightgreen)
    ![GitHub Stars](https://img.shields.io/github/stars/alsania-dev/Nyx?style=flat-square&label=Stars)
    ![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)
-   ![Chrome Users](https://img.shields.io/chrome-web-store/users/kngiafgkdnlkgmefdafaibkibegkcaef?style=flat-square&label=Chrome%20Users)
-   ![Firefox Users](https://img.shields.io/amo/users/nyx?style=flat-square&label=Firefox%20Users)
+   ![Chrome Users](coming soon)
+   ![Firefox Users](coming soon)
    ![Build Status](https://img.shields.io/badge/Status-Active-success?style=flat-square)
 
-</div>
-
-## Installation
-
-<div align="center" style="display: flex; justify-content: center; gap: 20px; align-items: center;">
-   <a href="https://chromewebstore.google.com/detail/nyx/kngiafgkdnlkgmefdafaibkibegkcaef?hl=en"><img src="https://developer.chrome.com/static/docs/webstore/branding/image/HRs9MPufa1J1h5glNhut.png" alt="Chrome Web Store" width="200" height="auto" style="vertical-align: middle;" /></a>
-   <a href="https://addons.mozilla.org/en-US/firefox/addon/nyx/"><img src="https://blog.mozilla.org/addons/files/2015/11/get-the-addon.png" alt="Firefox Add-ons" width="200" height="auto" style="vertical-align: middle;" /></a>
 </div>
 
 <br>
@@ -58,28 +51,6 @@ Nyx is a Chrome extension that integrates the Model Context Protocol (MCP) tools
 - [Z Chat](https://chat.z.ai/)
 
 
-## Demo Video
-
-Kimi.com
-
-[![Nyx Demo](https://img.youtube.com/vi/jnBPh2jzunM/0.jpg)](https://www.youtube.com/watch?v=jnBPh2jzunM)
-
-ChatGPT
-
-[![Nyx Demo](https://img.youtube.com/vi/PY0SKjtmy4E/0.jpg)](https://www.youtube.com/watch?v=PY0SKjtmy4E)
-
-Watch the demo to see Nyx in action!
-
-[Nyx Demo Playlist](https://www.youtube.com/playlist?list=PLOK1DBnkeaJFzxC4M-z7TU7_j04SShX_w)
-
-## Setup Tutorial
-
-[![Setup Tutorial](https://img.youtube.com/vi/h9f_GX1Ef20/0.jpg)](https://www.youtube.com/watch?v=h9f_GX1Ef20&pp=ygUTbWNwIHN1cGVyIGFzc2lzdGFudA%3D%3D)
-
-**New to Nyx?** Watch this complete setup guide to get started in minutes!
-
-[View Setup Tutorial](https://www.youtube.com/watch?v=h9f_GX1Ef20&pp=ygUTbWNwIHN1cGVyIGFzc2lzdGFudA%3D%3D)
-
 ## What is MCP?
 
 The Model Context Protocol (MCP) is an open standard developed by Anthropic that connects AI assistants to systems where data actually lives, including content repositories, business tools, and development environments. It serves as a universal protocol that enables AI systems to securely and dynamically interact with data sources in real time.
@@ -90,7 +61,7 @@ The Model Context Protocol (MCP) is an open standard developed by Anthropic that
 - **Tool Detection**: Automatically detects MCP tool calls in AI responses
 - **Tool Execution**: Execute MCP tools with a single click
 - **Tool Result Integration**: Seamlessly insert tool execution results back into the AI conversation
-- **Render Mode**: Renders Function call and Function results. 
+- **Render Mode**: Renders Function call and Function results.
 - **Auto-Execute Mode**: Automatically execute detected tools
 - **Auto-Submit Mode**: Automatically submit chat input after result insertion
 - **Push Content Mode**: Option to push page content instead of overlaying
@@ -121,7 +92,7 @@ To connect the Chrome extension to a local server for proxying connections:
    ```json
    {
      "mcpServers": {
-       "alsaniamcpr": {
+       "alsaniamcp": {
          "command": "npx",
          "args": [
            "-y",
@@ -145,7 +116,7 @@ To connect the Chrome extension to a local server for proxying connections:
    ```bash
    npx -y @alsania-io/mcpnyx@latest --config ./config.json --outputTransport sse
    ```
-   or 
+   or
    ```bash
    npx -y @alsania-io/mcpnyx --config ./config.json --outputTransport streamableHttp
    ```
@@ -158,7 +129,7 @@ To connect the Chrome extension to a local server for proxying connections:
    ```bash
    npx -y @alsania-io/mcpnyx@latest --help
    ```
-   
+
    This is useful for:
    - Proxying remote MCP servers
    - Adding CORS support to remote servers
@@ -174,7 +145,7 @@ To connect the Chrome extension to a local server for proxying connections:
    - For SSE: `http://localhost:3055/sse`
    - For Streamable HTTP: `http://localhost:3055/mcp`
    - For WebSocket: `ws://localhost:3055/message`
-   - Choose the appropriate transport method (SSE or Streamable HTTP or WebSocket) 
+   - Choose the appropriate transport method (SSE or Streamable HTTP or WebSocket)
    - You can add any remote MCP server URL here as well, if it supports CORS or is proxied via this local proxy server. Try [Composio mcp](https://mcp.composio.dev/), [Zappier mcp](https://zapier.com/mcp), or [smithery](https://smithery.ai/) or any other remote MCP server.
 5. Click "Connect" to establish the connection
 6. The status indicator should change to "Connected" if successful
@@ -227,7 +198,7 @@ This page covers the most common issues users encounter with Nyx and provides so
 - Ensure that your firewall or antivirus software is not blocking the connection.
 - Make sure the server shows the proper connected status and exposes the `/sse` endpoint.
 
-### 4. Incorrect tool call format 
+### 4. Incorrect tool call format
 
 - There are times model does not generate correct tool call format as requested, this makes the tool detection to fail.
 In such cases, use better models which are meant for tool calling or have better tool calling capabilities.
