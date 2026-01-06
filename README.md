@@ -18,7 +18,7 @@ Where automation meets tranquility
 </div>
 
 <div align="center">
-
+   
    ![Latest Release](https://img.shields.io/github/v/release/alsania-dev/Nyx?style=flat-square&label=Latest%20Release&color=brightgreen)
    ![GitHub Stars](https://img.shields.io/github/stars/alsania-dev/Nyx?style=flat-square&label=Stars)
    ![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)
@@ -85,7 +85,7 @@ To connect the Chrome extension to a local server for proxying connections:
 
 #### Run Nyx Proxy via npx:
 
-1. Create a `config.json` file with your MCP server details. For example, to use the [Desktop Commander](https://github.com/wonderwhy-er/DesktopCommanderMCP):
+1. Create a `config.json` file with your MCP server details. For example, to use the AlsaniaMCP:
 
 
    **Example config.json:**
@@ -145,7 +145,7 @@ To connect the Chrome extension to a local server for proxying connections:
    - For SSE: `http://localhost:3055/sse`
    - For Streamable HTTP: `http://localhost:3055/mcp`
    - For WebSocket: `ws://localhost:3055/message`
-   - Choose the appropriate transport method (SSE or Streamable HTTP or WebSocket)
+   - Choose the appropriate transport method (SSE or Streamable HTTP or WebSocket) 
    - You can add any remote MCP server URL here as well, if it supports CORS or is proxied via this local proxy server. Try [Composio mcp](https://mcp.composio.dev/), [Zappier mcp](https://zapier.com/mcp), or [smithery](https://smithery.ai/) or any other remote MCP server.
 5. Click "Connect" to establish the connection
 6. The status indicator should change to "Connected" if successful
