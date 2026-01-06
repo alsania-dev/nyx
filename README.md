@@ -85,7 +85,7 @@ To connect the Chrome extension to a local server for proxying connections:
 
 #### Run Nyx Proxy via npx:
 
-1. Create a `config.json` file with your MCP server details. For example, to use the [AlsaniaMCP](<link-to-alsania-mcp-project>):
+1. Create a `config.json` file with your MCP server details. For example, to use the [AlsaniaMCP](A): npx -y @alsania-io/mcp@latest
 
 
    **Example config.json:**
