@@ -61,7 +61,7 @@ The Model Context Protocol (MCP) is an open standard developed by Anthropic that
 - **Tool Detection**: Automatically detects MCP tool calls in AI responses
 - **Tool Execution**: Execute MCP tools with a single click
 - **Tool Result Integration**: Seamlessly insert tool execution results back into the AI conversation
-- **Render Mode**: Renders Function call and Function results. 
+- **Render Mode**: Renders Function call and Function results.
 - **Auto-Execute Mode**: Automatically execute detected tools
 - **Auto-Submit Mode**: Automatically submit chat input after result insertion
 - **Push Content Mode**: Option to push page content instead of overlaying
@@ -85,7 +85,7 @@ To connect the Chrome extension to a local server for proxying connections:
 
 #### Run Nyx Proxy via npx:
 
-1. Create a `config.json` file with your MCP server details. For example, to use the [Desktop Commander](https://github.com/wonderwhy-er/DesktopCommanderMCP):
+1. Create a `config.json` file with your MCP server details. For example, to use the [AlsaniaMCP](<link-to-alsania-mcp-project>):
 
 
    **Example config.json:**
@@ -116,7 +116,7 @@ To connect the Chrome extension to a local server for proxying connections:
    ```bash
    npx -y @alsania-io/mcpnyx@latest --config ./config.json --outputTransport sse
    ```
-   or 
+   or
    ```bash
    npx -y @alsania-io/mcpnyx --config ./config.json --outputTransport streamableHttp
    ```
@@ -129,7 +129,7 @@ To connect the Chrome extension to a local server for proxying connections:
    ```bash
    npx -y @alsania-io/mcpnyx@latest --help
    ```
-   
+
    This is useful for:
    - Proxying remote MCP servers
    - Adding CORS support to remote servers
@@ -198,7 +198,7 @@ This page covers the most common issues users encounter with Nyx and provides so
 - Ensure that your firewall or antivirus software is not blocking the connection.
 - Make sure the server shows the proper connected status and exposes the `/sse` endpoint.
 
-### 4. Incorrect tool call format 
+### 4. Incorrect tool call format
 
 - There are times model does not generate correct tool call format as requested, this makes the tool detection to fail.
 In such cases, use better models which are meant for tool calling or have better tool calling capabilities.
