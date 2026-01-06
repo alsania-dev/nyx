@@ -293,6 +293,3 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - Built with [Chrome Extension Boilerplate with React + Vite](https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite)
 
 
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=alsania-dev/Nyx&type=Date)](https://www.star-history.com/#alsania-dev/Nyx&Date)
