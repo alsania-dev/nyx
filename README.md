@@ -9,7 +9,7 @@ Where automation meets tranquility
 </p>
 
 <p align="center">
-   <a href="https://alsania-io.com/utils/nyx/" target="_blank"><strong>🌐 Visit Official Website</strong></a>
+   <a href="https://alsania-io.com/tools/nyx/" target="_blank"><strong>🌐 Visit Official Website</strong></a>
 </p>
 
 <!-- ![Nyx](chrome-extension/public/Cover3.jpg) -->
