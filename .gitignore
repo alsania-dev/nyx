@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+/.pnp*
+*.zip
+*.tar.gz
+
+# Build artifacts
+/build/
+/dist/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Logs
+logs/
+*.log
+
+# Environment variables
+.env
+
+# Editor/IDE
+.vscode/
+.idea/
+*.sublime-*
