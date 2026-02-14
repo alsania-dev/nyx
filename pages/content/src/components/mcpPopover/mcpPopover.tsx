@@ -75,8 +75,7 @@ const styles = `
 }
 
 .mcp-popover {
-  width: 90vw;
-  max-width: 650px;
+  width: min(650px, 95vw);
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(60,64,67,0.10), 0 2px 8px rgba(60,64,67,0.06);
@@ -86,14 +85,6 @@ const styles = `
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
   overflow: visible;
   max-height: 90vh;
-  position: relative;
-  /* Mobile-friendly positioning */
-  position: fixed !important;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-height: 90vh;
-  overflow-y: auto;
 }
 
 /* Responsive styles for mobile */
@@ -103,6 +94,11 @@ const styles = `
     max-width: 95vw;
     min-height: 300px;
     max-height: 80vh;
+    position: fixed !important;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow-y: auto;
   }
   
   .mcp-popover.position-above::after,
@@ -1277,11 +1273,10 @@ export const MCPPopover: React.FC<MCPPopoverProps> = ({ toggleStateManager, adap
             flexDirection: 'row',
             minHeight: 280,
             padding: 0,
-            width: '650px',
             position: 'relative',
             borderRadius: '16px',
             boxShadow: theme.boxShadow,
-            overflow: 'hidden',
+            overflow: 'visible',
             backgroundColor: theme.mainBackground,
             border: `1px solid ${theme.borderColor}`,
           }}>
