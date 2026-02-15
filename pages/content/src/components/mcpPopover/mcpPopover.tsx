@@ -87,17 +87,23 @@ const styles = `
   max-height: 90vh;
 }
 
-/* Responsive styles for mobile */
+/* Responsive styles for mobile - conditional positioning for modal behavior */
 @media (max-width: 768px) {
-  .mcp-popover {
+  .mcp-popover:not(.is-modal) {
     width: 95vw;
     max-width: 95vw;
     min-height: 300px;
     max-height: 80vh;
-    position: fixed !important;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    overflow-y: auto;
+  }
+  
+  /* Modal-style popover for mobile */
+  .mcp-popover.is-modal {
+    width: 95vw;
+    max-width: 95vw;
+    min-height: 300px;
+    max-height: 80vh;
+    position: relative; /* Let PopoverPortal control positioning */
     overflow-y: auto;
   }
   
@@ -1264,9 +1270,24 @@ export const MCPPopover: React.FC<MCPPopoverProps> = ({ toggleStateManager, adap
           </div>,
           document.body,
         )}
+      {/* Render modal overlay when popover is open */}
+      {isPopoverOpen && createPortal(
+        <div 
+          className="mcp-modal-overlay" 
+          onClick={() => setIsPopoverOpen(false)}
+          onKeyDown={(e) => {
+            if (e.key === 'Escape') {
+              setIsPopoverOpen(false);
+            }
+          }}
+          tabIndex={0}
+        />,
+        document.body
+      )}
+      
       <PopoverPortal isOpen={isPopoverOpen} triggerRef={buttonRef}>
         <div
-          className="mcp-popover position-above"
+          className={`mcp-popover ${window.innerWidth <= 768 ? 'is-modal' : 'position-above'}`}
           ref={popoverRef}
           style={{
             display: 'flex',
