@@ -118,11 +118,11 @@ To connect the Chrome extension to a local server for proxying connections:
    ```
    or
    ```bash
-   npx -y @alsania-io/mcpnyx --config ./config.json --outputTransport streamableHttp
+   npx -y @alsania-io/mcpnyx@latest --config ./config.json --outputTransport streamableHttp
    ```
    or
    ```bash
-   npx -y @alsania-io/mcpnyx --config ./config.json --outputTransport ws
+   npx -y @alsania-io/mcpnyx@latest --config ./config.json --outputTransport ws
    ```
 
    **View all available options:**
