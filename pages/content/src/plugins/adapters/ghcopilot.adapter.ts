@@ -13,7 +13,7 @@ import { createLogger } from '@extension/shared/lib/logger';
 
 const logger = createLogger('GitHubCopilotAdapter');
 
-export class GitHubCopilotAdapter extends BaseAdapterPlugin { readonly name = 'GitHubCopilotAdapter'; readonly version = '2.0.0'; // Incremented for new architecture readonly hostnames = ['github.com/copilot'];
+export class GitHubCopilotAdapter extends BaseAdapterPlugin { readonly name = 'GitHubCopilotAdapter'; readonly version = '2.0.0'; // Incremented for new architecture readonly hostnames = [/^github\.com$/, /^copilot\.github\.com$/];
   readonly capabilities: AdapterCapability[] = [ 'text-insertion', 'form-submission', 'file-attachment', 'dom-manipulation'
   ];
  // CSS selectors for GitHub Copilot's UI elements
@@ -80,6 +80,12 @@ export class GitHubCopilotAdapter extends BaseAdapterPlugin { readonly name = 'G
   async activate(): Promise<void> {
     // Guard against multiple activation if (this.currentStatus === 'active') {
       this.context?.logger.warn(`GitHub Copilot adapter instance #${this.instanceId} already active, skipping re-activation`);
+      return;
+    }
+
+    const isSupported = await Promise.resolve(this.isSupported());
+    if (!isSupported) {
+      this.context.logger.debug(`GitHub Copilot adapter instance #${this.instanceId} is not supported on ${window.location.href}, skipping activation`);
       return;
     }
 
