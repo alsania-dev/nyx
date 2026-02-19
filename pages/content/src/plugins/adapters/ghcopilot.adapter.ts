@@ -13,9 +13,11 @@ import { createLogger } from '@extension/shared/lib/logger';
 
 const logger = createLogger('GitHubCopilotAdapter');
 
-export class GitHubCopilotAdapter extends BaseAdapterPlugin { readonly name = 'GitHubCopilotAdapter'; readonly version = '2.0.0'; // Incremented for new architecture readonly hostnames = ['github.com/copilot'];
-  readonly capabilities: AdapterCapability[] = [ 'text-insertion', 'form-submission', 'file-attachment', 'dom-manipulation'
-  ];
+export class GitHubCopilotAdapter extends BaseAdapterPlugin {
+  readonly name = 'GitHubCopilotAdapter';
+  readonly version = '2.0.0'; // Incremented for new architecture
+  readonly hostnames = ['github.com', 'copilot.github.com'];
+  readonly capabilities: AdapterCapability[] = ['text-insertion', 'form-submission', 'file-attachment', 'dom-manipulation'];
  // CSS selectors for GitHub Copilot's UI elements
   // Updated selectors based on current GitHub Copilot interface
   private readonly selectors = {
