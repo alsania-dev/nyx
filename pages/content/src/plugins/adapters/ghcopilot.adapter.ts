@@ -86,6 +86,12 @@ export class GitHubCopilotAdapter extends BaseAdapterPlugin { readonly name = 'G
       return;
     }
 
+    const isSupported = await Promise.resolve(this.isSupported());
+    if (!isSupported) {
+      this.context.logger.debug(`GitHub Copilot adapter instance #${this.instanceId} is not supported on ${window.location.href}, skipping activation`);
+      return;
+    }
+
     await super.activate();
     this.context.logger.debug(`Activating GitHub Copilot adapter instance #${this.instanceId}...`);
 

@@ -309,6 +309,15 @@ class PluginRegistry {
         }
         return;
       }
+
+      const pluginSupported = await Promise.resolve(plugin.isSupported());
+      if (!pluginSupported) {
+        logger.debug(` Plugin ${plugin.name} does not support current URL, skipping activation`);
+        if (this.activePlugin) {
+          await this.deactivateCurrentPlugin();
+        }
+        return;
+      }
  // Don't reactivate if already active
       if (this.activePlugin?.name === plugin.name) {
         logger.debug(` Plugin ${plugin.name} already active for ${hostname}, skipping activation`);
@@ -337,6 +346,12 @@ class PluginRegistry {
     }
 
     try {
+      const isSupported = await Promise.resolve(registration.plugin.isSupported());
+      if (!isSupported) {
+        logger.debug(` Plugin ${pluginName} is not supported for the current URL, skipping activation`);
+        return;
+      }
+
       // Deactivate current plugin first (but never deactivate sidebar-plugin)
       if (this.activePlugin && this.activePlugin.name !== pluginName) {
         // Skip deactivation if current plugin is sidebar-plugin (it should persist) if (this.activePlugin.name !== 'sidebar-plugin') {
