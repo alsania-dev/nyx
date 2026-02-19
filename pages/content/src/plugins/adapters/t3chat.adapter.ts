@@ -617,20 +617,28 @@ export class T3ChatAdapter extends BaseAdapterPlugin {
 
   private findButtonInsertionPoint(): { container: Element; insertAfter: Element | null } | null { this.context.logger.debug('Finding button insertion point for MCP popover');
 
-    // Try primary selector first - T3Chat message actions const messageActions = document.querySelector('div[aria-label="Message actions"]');
-    if (messageActions) { this.context.logger.debug('Found insertion point: div[aria-label="Message actions"]'); const submitButton = messageActions.querySelector('button[type="submit"]');
-      return { container: messageActions, insertAfter: submitButton || null };
-    }
+    const primarySelectors = this.selectors.BUTTON_INSERTION_CONTAINER.split(',').map((selector) => selector.trim());
+    for (const selector of primarySelectors) {
+      const container = document.querySelector(selector);
+      if (container) {
+        this.context.logger.debug(`Found insertion point: ${selector}`);
 
-    // Try T3Chat specific flex container const flexContainer = document.querySelector('.-mb-px.mt-2.flex.w-full.flex-row-reverse.justify-between');
-    if (flexContainer) { this.context.logger.debug('Found insertion point: T3Chat flex container'); const firstDiv = flexContainer.querySelector('div');
-      return { container: flexContainer, insertAfter: firstDiv || null };
+        if (selector === 'div[aria-label="Message actions"]') {
+          const submitButton = container.querySelector('button[type="submit"]');
+          return { container, insertAfter: submitButton || null };
+        }
+
+        if (selector === '.-mb-px.mt-2.flex.w-full.flex-row-reverse.justify-between') {
+          const firstDiv = container.querySelector('div');
+          return { container, insertAfter: firstDiv || null };
+        }
+
+        return { container, insertAfter: null };
+      }
     }
 
     // Try fallback selectors
-    const fallbackSelectors = [ '.chat-input-actions', '.message-actions', '.input-area .actions'
-    ];
-
+    const fallbackSelectors = this.selectors.FALLBACK_INSERTION.split(',').map((selector) => selector.trim());
     for (const selector of fallbackSelectors) {
       const container = document.querySelector(selector);
       if (container) {

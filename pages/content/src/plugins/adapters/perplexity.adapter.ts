@@ -822,23 +822,35 @@ export class PerplexityAdapter extends BaseAdapterPlugin {
 
   private findButtonInsertionPoint(): { container: Element; insertAfter: Element | null } | null { this.context.logger.debug('Finding button insertion point for MCP popover');
 
-    // Try to find the search/research toggle area first (primary insertion point) const radioGroup = document.querySelector('div[role="radiogroup"].group.relative.isolate.flex');
-    if (radioGroup) { const container = radioGroup.closest('.flex.items-center');
-      if (container) { this.context.logger.debug('Found search/research toggle container, placing MCP button next to it');
-        const wrapperDiv = radioGroup.parentElement;
-        return { container, insertAfter: wrapperDiv };
+    const primarySelectors = this.selectors.BUTTON_INSERTION_CONTAINER.split(',').map((selector) => selector.trim());
+    for (const selector of primarySelectors) {
+      const container = document.querySelector(selector);
+      if (container) {
+        this.context.logger.debug(`Found insertion point: ${selector}`);
+
+        if (selector === 'div[role="radiogroup"].group.relative.isolate.flex') {
+          const wrapperDiv = container.parentElement;
+          if (wrapperDiv) {
+            const parentContainer = container.closest('.flex.items-center');
+            if (parentContainer) {
+              this.context.logger.debug('Found search/research toggle container, placing MCP button next to it');
+              return { container: parentContainer, insertAfter: wrapperDiv };
+            }
+          }
+        }
+
+        if (selector === 'div.flex.items-end.gap-sm') {
+          this.context.logger.debug('Found actions container (fallback)');
+          const fileUploadButton = container.querySelector('button[aria-label*="Attach"]');
+          return { container, insertAfter: fileUploadButton };
+        }
+
+        return { container, insertAfter: null };
       }
-    }
- // Fallback: Look for the main input area's action buttons container
-    const actionsContainer = document.querySelector('div.flex.items-end.gap-sm');
-    if (actionsContainer) { this.context.logger.debug('Found actions container (fallback)'); const fileUploadButton = actionsContainer.querySelector('button[aria-label*="Attach"]');
-      return { container: actionsContainer, insertAfter: fileUploadButton };
     }
 
     // Try fallback selectors
-    const fallbackSelectors = [ '.input-area .actions', '.chat-input-actions', '.conversation-input .actions'
-    ];
-
+    const fallbackSelectors = this.selectors.FALLBACK_INSERTION.split(',').map((selector) => selector.trim());
     for (const selector of fallbackSelectors) {
       const container = document.querySelector(selector);
       if (container) {
