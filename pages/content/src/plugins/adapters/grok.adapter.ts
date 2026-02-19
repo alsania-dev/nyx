@@ -800,41 +800,29 @@ export class GrokAdapter extends BaseAdapterPlugin { readonly name = 'GrokAdapte
 
   private findButtonInsertionPoint(): { container: Element; insertAfter: Element | null } | null { this.context.logger.debug('Finding button insertion point for MCP popover');
 
-    // First priority: Find the submit button container and insert before it const submitButton = document.querySelector('button[aria-label="Submit"], button[type="submit"], button[aria-label="Enter voice mode"]');
-    if (submitButton) {
-      // Look for the flex container that holds the submit button const submitContainer = submitButton.closest('.ml-auto.flex.flex-row.items-end.gap-1') ||  submitButton.closest('.flex.flex-row.items-end') || submitButton.closest('.flex.items-end') ||
-                             submitButton.parentElement;
-      
-      if (submitContainer) { this.context.logger.debug('Found insertion point: submit button container');
-        // Insert before the submit button (insertAfter: null means insert at beginning)
-        return { container: submitContainer, insertAfter: null };
-      }
-    }
-
-    // Second priority: Try to find the Think button in the bottom control bar (Grok-specific) const thinkButton = document.querySelector('button[aria-label="Think"]');
-    if (thinkButton && thinkButton.parentElement) { this.context.logger.debug('Found insertion point relative to Think button');
-      return { container: thinkButton.parentElement, insertAfter: thinkButton };
-    }
-
-    // Third priority: Try primary selector first const primarySelectors = this.selectors.BUTTON_INSERTION_CONTAINER.split(', ');
+    // Try primary selector first
+    const primarySelectors = this.selectors.BUTTON_INSERTION_CONTAINER.split(',').map((selector) => selector.trim());
     for (const selector of primarySelectors) {
-      const container = document.querySelector(selector.trim());
+      const container = document.querySelector(selector);
       if (container) {
-        this.context.logger.debug(`Found insertion point: ${selector.trim()}`); const buttons = container.querySelectorAll('button');
+        this.context.logger.debug(`Found insertion point: ${selector}`);
+        const buttons = container.querySelectorAll('button');
         const insertAfter = buttons.length > 0 ? buttons[buttons.length - 1] : null;
         return { container, insertAfter };
       }
     }
 
-    // Fourth priority: Try fallback selectors const fallbackSelectors = this.selectors.FALLBACK_INSERTION.split(', ');
+    // Try fallback selectors
+    const fallbackSelectors = this.selectors.FALLBACK_INSERTION.split(',').map((selector) => selector.trim());
     for (const selector of fallbackSelectors) {
-      const container = document.querySelector(selector.trim());
+      const container = document.querySelector(selector);
       if (container) {
-        this.context.logger.debug(`Found fallback insertion point: ${selector.trim()}`);
+        this.context.logger.debug(`Found fallback insertion point: ${selector}`);
         return { container, insertAfter: null };
       }
     }
- this.context.logger.debug('Could not find suitable insertion point for MCP popover');
+
+    this.context.logger.debug('Could not find suitable insertion point for MCP popover');
     return null;
   }
 
