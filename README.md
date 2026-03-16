@@ -12,7 +12,7 @@ Where automation meets tranquility
    <a href="https://alsania-io.com/tools/nyx/" target="_blank"><strong>🌐 Visit Official Website</strong></a>
 </p>
 
-<!-- ![Nyx](chrome-extension/public/Cover3.jpg) -->
+<!-- ![Nyx](chrome-extension/public/Cover5.jpg) -->
 <div align="center">
  <img src="chrome-extension/public/Cover5.jpg" alt="Nyx Cover" width="800">
 </div>
@@ -22,9 +22,10 @@ Where automation meets tranquility
    ![Latest Release](https://img.shields.io/github/v/release/alsania-dev/Nyx?style=flat-square&label=Latest%20Release&color=brightgreen)
    ![GitHub Stars](https://img.shields.io/github/stars/alsania-dev/Nyx?style=flat-square&label=Stars)
    ![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)
-   ![Chrome Users](coming soon)
-   ![Firefox Users](coming soon)
+   ![Chrome Users](ComingSoon)
+   ![Mozilla Add-on Version](https://img.shields.io/amo/v/nyx%40alsania-io.com)
    ![Build Status](https://img.shields.io/badge/Status-Active-success?style=flat-square)
+   [![npm version](https://badge.fury.io/js/@alsania-io%2Fmcpnyx.svg)](https://badge.fury.io/js/@alsania-io%2Fmcpnyx)
 
 </div>
 
